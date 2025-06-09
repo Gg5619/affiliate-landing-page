@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealBot Hub - Best Amazon Deals</title>
+    <meta name="description" content="Amazon ke sabse acche deals aur offers. Limited time offers with exclusive discounts!">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'spin': 'spin 1s linear infinite',
+                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #dbeafe 0%, #fae8ff 100%); }
+        .gradient-btn { background: linear-gradient(135deg, #dc2626 0%, #db2777 100%); }
+        .gradient-cta { background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">🎁</span>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">DealBot Hub</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-red-500">⏰</span>
+                <span id="timer" class="text-lg font-semibold text-red-500">30s remaining</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-4 py-12 text-center">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="inline-flex items-center px-4 py-2 bg-gray-200 rounded-full text-lg">
+                    <span class="mr-2">⚡</span>
+                    Limited Time Offers
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">
+                    Best Deals Sirf
+                    <span id="heroTimer" class="text-blue-600"> 30 Seconds</span> Mein!
+                </h1>
+
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Amazon ke sabse acche deals aur offers yahan milenge. Timer khatam hone se pehle check karo!
+                </p>
+
+                <div class="bg-white rounded-lg p-6 shadow-lg inline-block">
+                    <div id="countdownDisplay" class="text-3xl font-bold text-red-500 mb-2">⏰ 30 Seconds Left</div>
+                    <p class="text-gray-600">Bot redirect hone wala hai...</p>
+                </div>
+
+                <!-- Special Adsterra Offer Button -->
+                <div class="mt-8">
+                    <button onclick="triggerAd()" class="gradient-btn hover:opacity-90 text-white text-xl px-12 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200">
+                        <span class="mr-3">🎯</span>🎁 EXCLUSIVE BONUS OFFER!
+                        <span class="ml-2 bg-yellow-400 text-red-800 px-2 py-1 rounded-full text-sm font-bold">
+                            CLICK NOW!
+                        </span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">⚡ Limited time special offer - Don't miss out!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amazon Affiliate Products -->
+        <section class="container mx-auto px-4 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">🔥 Today's Hot Deals</h2>
+                <p class="text-gray-600 text-lg">Amazon se direct deals - Limited stock available!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                    <div class="p-6 text-center">
+                        <div class="relative mb-4">
+                            <div class="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <span class="text-gray-500">📱 Product Image</span>
+                            </div>
+                            <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">40% OFF</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Premium Wireless Headphones</h3>
+                        <div class="flex items-center justify-center space-x-1 mb-4">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            <span class="text-sm text-gray-600 ml-2">(4.5)</span>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹2,999</span>
+                                <span class="text-lg text-gray-500 line-through">₹4,999</span>
+                            </div>
+                        </div>
+                        <button onclick="handleProductClick('https://amazon.in/your-affiliate-link-1')" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg">
+                            🛒 Buy Now on Amazon
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                    <div class="p-6 text-center">
+                        <div class="relative mb-4">
+                            <div class="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <span class="text-gray-500">⌚ Product Image</span>
+                            </div>
+                            <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">46% OFF</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Smart Fitness Watch</h3>
+                        <div class="flex items-center justify-center space-x-1 mb-4">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            <span class="text-sm text-gray-600 ml-2">(4.3)</span>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹1,899</span>
+                                <span class="text-lg text-gray-500 line-through">₹3,499</span>
+                            </div>
+                        </div>
+                        <button onclick="handleProductClick('https://amazon.in/your-affiliate-link-2')" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg">
+                            🛒 Buy Now on Amazon
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                    <div class="p-6 text-center">
+                        <div class="relative mb-4">
+                            <div class="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <span class="text-gray-500">🔋 Product Image</span>
+                            </div>
+                            <span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">41% OFF</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Portable Power Bank 20000mAh</h3>
+                        <div class="flex items-center justify-center space-x-1 mb-4">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            <span class="text-sm text-gray-600 ml-2">(4.7)</span>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-2xl font-bold text-green-600">₹1,299</span>
+                                <span class="text-lg text-gray-500 line-through">₹2,199</span>
+                            </div>
+                        </div>
+                        <button onclick="handleProductClick('https://amazon.in/your-affiliate-link-3')" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg">
+                            🛒 Buy Now on Amazon
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="gradient-cta text-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">Timer Khatam Hone Se Pehle Action Lo!</h2>
+                <p class="text-xl mb-8 opacity-90">Bot ke saath chat karke aur bhi exclusive deals pao</p>
+                <div id="ctaTimer" class="text-4xl font-bold mb-6">⏰ 30 Seconds</div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="triggerAd()" class="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-3 rounded-lg">
+                        🎁 Bonus Offer Claim Karo!
+                    </button>
+
+                    <button onclick="redirectToBot()" class="bg-white text-gray-800 hover:bg-gray-100 text-lg px-8 py-3 rounded-lg">
+                        Bot Se Chat Karo Ab! 🤖
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Redirect Screen -->
+    <div id="redirectScreen" class="hidden min-h-screen flex items-center justify-center">
+        <div class="text-center space-y-4">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <h2 class="text-2xl font-bold text-gray-800">Redirecting to Bot...</h2>
+            <p class="text-gray-600">Aap bot ke saath chat kar sakte hain!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4">© 2024 DealBot Hub. All rights reserved.</p>
+            <p class="text-sm text-gray-400">* Amazon affiliate links se commission milta hai. Prices may vary.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration
+        const ADSTERRA_LINK = "https://www.profitableratecpm.com/rizm6cjk2?key=0cf97490f53c1ba433500eb9cfd35871";
+        const BOT_LINK = "https://your-bot-link.com"; // Replace with your bot URL
+        
+        let timeLeft = 30;
+        let adTriggered = false;
+
+        // Timer function
+        function updateTimer() {
+            if (timeLeft > 0) {
+                document.getElementById('timer').textContent = timeLeft + 's remaining';
+                document.getElementById('heroTimer').textContent = ' ' + timeLeft + ' Seconds';
+                document.getElementById('countdownDisplay').textContent = '⏰ ' + timeLeft + ' Seconds Left';
+                document.getElementById('ctaTimer').textContent = '⏰ ' + timeLeft + ' Seconds';
+
+                // Strategic ad triggers
+                if (timeLeft === 25 && !adTriggered) {
+                    // 5 seconds after page load
+                    triggerAd();
+                    adTriggered = true;
+                }
+
+                if (timeLeft === 15) {
+                    // 15 seconds after page load
+                    setTimeout(() => {
+                        triggerAd();
+                    }, 2000);
+                }
+
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                // Timer finished - redirect to bot
+                triggerAd(); // Final ad trigger
+                showRedirectScreen();
+                setTimeout(() => {
+                    window.location.href = BOT_LINK;
+                }, 3000);
+            }
+        }
+
+        // Trigger Adsterra ad
+        function triggerAd() {
+            window.open(ADSTERRA_LINK, '_blank');
+        }
+
+        // Handle product clicks
+        function handleProductClick(affiliateLink) {
+            // First trigger ad
+            triggerAd();
+            // Then open Amazon link after delay
+            setTimeout(() => {
+                window.open(affiliateLink, '_blank');
+            }, 1000);
+        }
+
+        // Redirect to bot
+        function redirectToBot() {
+            triggerAd();
+            setTimeout(() => {
+                window.location.href = BOT_LINK;
+            }, 1500);
+        }
+
+        // Show redirect screen
+        function showRedirectScreen() {
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('redirectScreen').classList.remove('hidden');
+        }
+
+        // Start timer when page loads
+        window.onload = function() {
+            updateTimer();
+            
+            // Initial ad trigger
+            setTimeout(() => {
+                triggerAd();
+            }, 1000);
+        };
+
+        // Exit intent detection
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0) {
+                triggerAd();
+            }
+        });
+
+        // Mobile touch events
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            let touchY = e.touches[0].clientY;
+            let touchDiff = touchStartY - touchY;
+            
+            if (touchDiff < -100) { // Swipe down
+                triggerAd();
+            }
+        });
+    </script>
+</body>
+</html>
