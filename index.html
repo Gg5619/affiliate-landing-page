@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Please Wait - Redirecting Soon</title>
+    <title>🚀 Loading Experience - Please Wait</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +14,10 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -21,235 +25,439 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 107, 53, 0.6);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
+            z-index: 10;
+            position: relative;
         }
 
-        .timer-section {
+        .header {
             margin-bottom: 40px;
         }
 
-        .timer-circle {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcc02);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
-        .timer-bg {
+        @keyframes titleGlow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            font-weight: 300;
+        }
+
+        .timer-section {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timer-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .timer-ring {
+            position: absolute;
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: conic-gradient(#ff6b35 0deg, #333 0deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.1s ease;
+            background: conic-gradient(from 0deg, #ff6b35 0deg, transparent 0deg);
+            padding: 8px;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .timer-inner {
-            width: 120px;
-            height: 120px;
-            background: #1a1a1a;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a2e, #0f0f23);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 107, 53, 0.3);
         }
 
         .countdown {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 700;
             color: #ff6b35;
-            animation: pulse 1s infinite;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         .countdown-label {
-            font-size: 0.8rem;
-            color: #ccc;
+            font-size: 0.9rem;
+            color: #888;
             margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
         }
 
-        .message {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        .status-message {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-text {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .status-subtext {
+            font-size: 0.9rem;
             color: #ccc;
         }
 
-        .sub-message {
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 30px;
-        }
-
-        .ad-section {
-            background: #333;
-            border: 2px dashed #555;
-            border-radius: 10px;
-            padding: 40px 20px;
+        .progress-section {
             margin: 30px 0;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .ad-placeholder {
-            color: #777;
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .ad-loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #555;
-            border-radius: 50%;
-            border-top-color: #ff6b35;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: #333;
-            border-radius: 3px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             overflow: hidden;
-            margin: 20px 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            background: linear-gradient(90deg, #ff6b35, #f7931e, #ffcc02);
             width: 0%;
-            transition: width 0.1s ease;
-            border-radius: 3px;
-        }
-
-        .redirect-info {
-            background: #2a2a2a;
+            transition: width 0.3s ease;
             border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border-left: 4px solid #ff6b35;
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
+            animation: progressGlow 2s ease-in-out infinite alternate;
         }
 
-        .telegram-icon {
-            font-size: 1.5rem;
-            margin-right: 10px;
+        @keyframes progressGlow {
+            from { box-shadow: 0 0 10px rgba(255, 107, 53, 0.6); }
+            to { box-shadow: 0 0 20px rgba(255, 107, 53, 1); }
+        }
+
+        .ad-section {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 2px dashed rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 30px 0;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .ad-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .ad-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .ad-text {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .ad-subtext {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+            margin-left: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #ff6b35;
+            border-radius: 50%;
+            animation: loadingDots 1.4s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes loadingDots {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .redirect-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.1));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .redirect-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            animation: telegramPulse 2s infinite;
+        }
+
+        @keyframes telegramPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: brightness(1.2); }
+        }
+
+        .redirect-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .redirect-subtext {
+            font-size: 0.9rem;
+            color: #ccc;
         }
 
         .continue-btn {
-            background: #ff6b35;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
-            opacity: 0.5;
+            margin-top: 25px;
+            opacity: 0.4;
             pointer-events: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .continue-btn.active {
             opacity: 1;
             pointer-events: auto;
-            animation: glow 2s infinite;
+            animation: buttonReady 2s infinite;
         }
 
         .continue-btn.active:hover {
-            background: #ff8c42;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(45deg, #f7931e, #ffcc02);
         }
 
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px #ff6b35; }
-            50% { box-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35; }
+        @keyframes buttonReady {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); }
+            50% { box-shadow: 0 8px 30px rgba(255, 107, 53, 0.8); }
         }
 
-        .footer-text {
-            margin-top: 30px;
+        .footer {
+            margin-top: 40px;
             font-size: 0.8rem;
             color: #666;
+            text-align: center;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 480px) {
-            .timer-circle {
-                width: 120px;
-                height: 120px;
+            .main-title {
+                font-size: 2rem;
             }
             
-            .timer-inner {
-                width: 95px;
-                height: 95px;
+            .timer-container {
+                width: 160px;
+                height: 160px;
             }
             
             .countdown {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .container {
                 padding: 10px;
             }
+            
+            .ad-section {
+                min-height: 180px;
+                padding: 30px 15px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
     <div class="container">
+        <div class="header">
+            <h1 class="main-title">🚀 LOADING</h1>
+            <p class="subtitle">Preparing your exclusive content</p>
+        </div>
+
         <div class="timer-section">
-            <div class="timer-circle">
-                <div class="timer-bg" id="timerBg">
+            <div class="timer-container">
+                <div class="timer-ring" id="timerRing">
                     <div class="timer-inner">
                         <div class="countdown" id="countdown">30</div>
-                        <div class="countdown-label">seconds</div>
+                        <div class="countdown-label">SECONDS</div>
                     </div>
                 </div>
             </div>
-            <div class="message">Please wait while we prepare your content</div>
-            <div class="sub-message">Do not refresh or close this page</div>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+        <div class="status-message">
+            <div class="status-text">⚡ Processing Request</div>
+            <div class="status-subtext">Please keep this tab active</div>
         </div>
 
-        <div class="ad-section">
-            <div class="ad-placeholder">Advertisement Loading...</div>
-            <div class="ad-loading"></div>
-        </div>
-
-        <div class="redirect-info">
-            <div>
-                <span class="telegram-icon">📱</span>
-                You will be redirected to Telegram bot automatically
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
 
+        <div class="ad-section">
+            <div class="ad-content">
+                <div class="ad-icon">📺</div>
+                <div class="ad-text">Advertisement Loading</div>
+                <div class="ad-subtext">
+                    Sponsored Content
+                    <span class="loading-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="redirect-card">
+            <div class="redirect-icon">🤖</div>
+            <div class="redirect-text">Telegram Bot Ready</div>
+            <div class="redirect-subtext">Auto-redirect will start after countdown</div>
+        </div>
+
         <button class="continue-btn" id="continueBtn" onclick="redirectToTelegram()">
-            Continue to Telegram Bot
+            🚀 Launch Bot
         </button>
 
-        <div class="footer-text">
-            Please wait for the countdown to complete
+        <div class="footer">
+            <p>Secure connection • No data stored • Privacy protected</p>
         </div>
     </div>
 
@@ -257,13 +465,27 @@
         let timeLeft = 30;
         let timerInterval;
         
-        // Telegram bot link - replace with your actual bot link
+        // Replace with your actual Telegram bot link
         const telegramBotLink = "https://t.me/your_bot_username";
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
         
         function startTimer() {
             const countdownElement = document.getElementById('countdown');
             const progressFill = document.getElementById('progressFill');
-            const timerBg = document.getElementById('timerBg');
+            const timerRing = document.getElementById('timerRing');
             const continueBtn = document.getElementById('continueBtn');
             
             timerInterval = setInterval(() => {
@@ -274,9 +496,9 @@
                 const progress = ((30 - timeLeft) / 30) * 100;
                 progressFill.style.width = progress + '%';
                 
-                // Update circular progress
+                // Update timer ring
                 const degrees = ((30 - timeLeft) / 30) * 360;
-                timerBg.style.background = `conic-gradient(#ff6b35 ${degrees}deg, #333 ${degrees}deg)`;
+                timerRing.style.background = `conic-gradient(from 0deg, #ff6b35 ${degrees}deg, transparent ${degrees}deg)`;
                 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
@@ -289,37 +511,50 @@
             const countdownElement = document.getElementById('countdown');
             const continueBtn = document.getElementById('continueBtn');
             const adSection = document.querySelector('.ad-section');
+            const statusMessage = document.querySelector('.status-message');
             
+            // Update countdown display
             countdownElement.textContent = '✓';
             countdownElement.style.color = '#4CAF50';
+            
+            // Update status message
+            statusMessage.innerHTML = `
+                <div class="status-text">✅ Ready to Continue</div>
+                <div class="status-subtext">All systems go!</div>
+            `;
+            
+            // Update ad section
+            adSection.innerHTML = `
+                <div class="ad-content">
+                    <div class="ad-icon">✨</div>
+                    <div class="ad-text">Content Unlocked!</div>
+                    <div class="ad-subtext">Click below to proceed</div>
+                </div>
+            `;
             
             // Enable continue button
             continueBtn.classList.add('active');
             
-            // Update ad section
-            adSection.innerHTML = '<div style="color: #4CAF50; font-size: 1.1rem;">✓ Ready to continue!</div>';
-            
-            // Auto redirect after 2 seconds
+            // Auto redirect after 3 seconds
             setTimeout(() => {
                 redirectToTelegram();
-            }, 2000);
+            }, 3000);
         }
         
         function redirectToTelegram() {
-            // Show loading state
             const continueBtn = document.getElementById('continueBtn');
-            continueBtn.textContent = 'Redirecting...';
-            continueBtn.style.background = '#4CAF50';
+            continueBtn.textContent = '🚀 Launching...';
+            continueBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
             
-            // Redirect to Telegram bot
             setTimeout(() => {
                 window.open(telegramBotLink, '_blank');
-                // Fallback: show manual link if auto-redirect fails
+                
+                // Fallback notification
                 setTimeout(() => {
                     if (!document.hidden) {
-                        alert('If the redirect didn\'t work, please click this link: ' + telegramBotLink);
+                        alert('🤖 If the bot didn\'t open automatically, click here: ' + telegramBotLink);
                     }
-                }, 3000);
+                }, 2000);
             }, 1000);
         }
         
@@ -331,17 +566,10 @@
             }
         });
         
-        // Start the timer when page loads
+        // Initialize everything when page loads
         window.addEventListener('load', () => {
+            createParticles();
             startTimer();
-        });
-        
-        // Handle visibility change (prevent cheating by switching tabs)
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden && timeLeft > 0) {
-                // Optional: pause timer when tab is hidden
-                // clearInterval(timerInterval);
-            }
         });
     </script>
 </body>
