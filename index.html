@@ -79,6 +79,35 @@
             position: relative;
         }
 
+        .top-message {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(247, 147, 30, 0.2));
+            border: 2px solid rgba(255, 107, 53, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: messageGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes messageGlow {
+            from { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+            to { box-shadow: 0 8px 32px rgba(255, 107, 53, 0.4); }
+        }
+
+        .top-message-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .top-message-subtext {
+            font-size: 0.9rem;
+            color: #ffcc02;
+            font-weight: 500;
+        }
+
         .header {
             margin-bottom: 40px;
         }
@@ -256,49 +285,87 @@
             width: 100%;
         }
 
-        .ad-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            animation: bounce 2s infinite;
+        /* IRRESISTIBLE BUTTON STYLES */
+        .irresistible-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcc02, #ff6b35);
+            background-size: 300% 300%;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s ease-in-out infinite, gradientMove 3s ease infinite;
+            min-width: 280px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        @keyframes buttonPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(255, 107, 53, 0.8);
+            }
         }
 
-        .ad-text {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 10px;
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .ad-subtext {
-            font-size: 0.9rem;
-            color: #aaa;
+        .irresistible-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
         }
 
-        .loading-dots {
-            display: inline-flex;
-            gap: 4px;
-            margin-left: 10px;
+        .irresistible-btn:hover::before {
+            left: 100%;
         }
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: #ff6b35;
-            border-radius: 50%;
-            animation: loadingDots 1.4s infinite ease-in-out;
+        .irresistible-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.9);
+            background: linear-gradient(45deg, #f7931e, #ffcc02, #ff6b35, #f7931e);
         }
 
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .irresistible-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
 
-        @keyframes loadingDots {
-            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
+        .btn-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            animation: iconBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .btn-subtext {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 8px;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         .redirect-card {
@@ -374,24 +441,6 @@
             text-align: center;
         }
 
-        /* Adstera Ad Styling */
-        .adstera-container {
-            width: 100%;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-        }
-
-        .ad-loading-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-        }
-
         /* Mobile Responsive */
         @media (max-width: 480px) {
             .main-title {
@@ -415,6 +464,16 @@
                 min-height: 180px;
                 padding: 30px 15px;
             }
+
+            .irresistible-btn {
+                font-size: 1.1rem;
+                padding: 18px 35px;
+                min-width: 250px;
+            }
+
+            .top-message-text {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -423,6 +482,12 @@
     <div class="particles" id="particles"></div>
 
     <div class="container">
+        <!-- TOP MESSAGE -->
+        <div class="top-message">
+            <div class="top-message-text">🎯 File Ready for Download!</div>
+            <div class="top-message-subtext">Click the button below to access your exclusive content</div>
+        </div>
+
         <div class="header">
             <h1 class="main-title">🚀 LOADING</h1>
             <p class="subtitle">Preparing your exclusive content</p>
@@ -452,21 +517,15 @@
 
         <div class="ad-section">
             <div class="ad-content">
-                <!-- ADSTERA AD INTEGRATION -->
-                <div class="adstera-container" id="adsteraContainer">
-                    <div class="ad-loading-state" id="adLoadingState">
-                        <div class="ad-icon">💰</div>
-                        <div class="ad-text">Premium Advertisement</div>
-                        <div class="ad-subtext">
-                            Loading sponsored content
-                            <span class="loading-dots">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                <!-- IRRESISTIBLE BUTTON -->
+                <button class="irresistible-btn" onclick="handleButtonClick()">
+                    <span class="btn-icon">💎</span>
+                    UNLOCK PREMIUM ACCESS
+                </button>
+                <div class="btn-subtext">⚡ Instant Access • 100% Free • No Registration</div>
+                
+                <!-- ADSTERA SCRIPT INTEGRATION -->
+                <script type='text/javascript' src='//pl26888066.profitableratecpm.com/f2/b5/a0/f2b5a0eac1f5784844d899e01c1490e8.js'></script>
             </div>
         </div>
 
@@ -485,13 +544,10 @@
         </div>
     </div>
 
-    <!-- ADSTERA SCRIPT INTEGRATION -->
-    <script type='text/javascript' src='//pl26888066.profitableratecpm.com/f2/b5/a0/f2b5a0eac1f5784844d899e01c1490e8.js'></script>
-
     <script>
         let timeLeft = 30;
         let timerInterval;
-        let adLoaded = false;
+        let buttonClicked = false;
         
         // Replace with your actual Telegram bot link
         const telegramBotLink = "https://t.me/your_bot_username";
@@ -510,31 +566,22 @@
             }
         }
 
-        // Check if Adstera ad is loaded
-        function checkAdLoaded() {
-            setTimeout(() => {
-                const adContainer = document.getElementById('adsteraContainer');
-                const loadingState = document.getElementById('adLoadingState');
-                
-                // Check if ad script has loaded content
-                if (adContainer && adContainer.children.length > 1) {
-                    adLoaded = true;
-                    if (loadingState) {
-                        loadingState.style.display = 'none';
-                    }
-                } else {
-                    // Show fallback if ad doesn't load
-                    setTimeout(() => {
-                        if (!adLoaded && loadingState) {
-                            loadingState.innerHTML = `
-                                <div class="ad-icon">📺</div>
-                                <div class="ad-text">Advertisement Ready</div>
-                                <div class="ad-subtext">Sponsored content loaded</div>
-                            `;
-                        }
-                    }, 5000);
-                }
-            }, 2000);
+        // Handle button click
+        function handleButtonClick() {
+            buttonClicked = true;
+            const btn = document.querySelector('.irresistible-btn');
+            const btnSubtext = document.querySelector('.btn-subtext');
+            
+            // Button click effect
+            btn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+            btn.innerHTML = '<span class="btn-icon">✅</span>ACCESS GRANTED!';
+            btnSubtext.innerHTML = '🎉 Success! Redirecting to your content...';
+            btnSubtext.style.color = '#4CAF50';
+            
+            // Trigger Adstera ad (if available)
+            // The script will handle ad display automatically
+            
+            console.log('Premium button clicked! Ad revenue generated.');
         }
         
         function startTimer() {
@@ -566,7 +613,6 @@
             const countdownElement = document.getElementById('countdown');
             const continueBtn = document.getElementById('continueBtn');
             const statusMessage = document.querySelector('.status-message');
-            const loadingState = document.getElementById('adLoadingState');
             
             // Update countdown display
             countdownElement.textContent = '✓';
@@ -578,22 +624,13 @@
                 <div class="status-subtext">All systems go!</div>
             `;
             
-            // Update ad loading state
-            if (loadingState && !adLoaded) {
-                loadingState.innerHTML = `
-                    <div class="ad-icon">✨</div>
-                    <div class="ad-text">Content Unlocked!</div>
-                    <div class="ad-subtext">Click below to proceed</div>
-                `;
-            }
-            
             // Enable continue button
             continueBtn.classList.add('active');
             
-            // Auto redirect after 3 seconds
+            // Auto redirect after 2 seconds
             setTimeout(() => {
                 redirectToTelegram();
-            }, 3000);
+            }, 2000);
         }
         
         function redirectToTelegram() {
@@ -602,14 +639,16 @@
             continueBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
             
             setTimeout(() => {
+                // Open bot in new tab
                 window.open(telegramBotLink, '_blank');
                 
-                // Fallback notification
+                // Close current tab after 1 second
                 setTimeout(() => {
-                    if (!document.hidden) {
-                        alert('🤖 If the bot didn\'t open automatically, click here: ' + telegramBotLink);
-                    }
-                }, 2000);
+                    window.close();
+                    // Fallback if window.close() doesn't work
+                    window.location.href = telegramBotLink;
+                }, 1000);
+                
             }, 1000);
         }
         
@@ -625,14 +664,17 @@
         window.addEventListener('load', () => {
             createParticles();
             startTimer();
-            checkAdLoaded();
         });
 
-        // Track ad performance (optional)
-        function trackAdPerformance() {
-            // You can add analytics here to track ad views/clicks
-            console.log('Adstera ad loaded successfully');
+        // Track button performance
+        function trackButtonPerformance() {
+            if (buttonClicked) {
+                console.log('Button engagement successful - Revenue optimized!');
+            }
         }
+
+        // Call tracking every 5 seconds
+        setInterval(trackButtonPerformance, 5000);
     </script>
 </body>
 </html>
